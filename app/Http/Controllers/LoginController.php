@@ -32,10 +32,9 @@ class LoginController extends Controller
     public function auth(Request $request) : RedirectResponse
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'name' => ['required'],
             'password' => ['required'],
         ]);
-
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
