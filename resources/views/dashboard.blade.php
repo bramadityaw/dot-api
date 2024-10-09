@@ -1,7 +1,6 @@
 @extends('layouts.main')
 @section('title') Home @endsection
 @section('main')
-<div class="bg-green-600 h-screen p-12">
     <main class="mx-auto w-4/5">
         <div class="bg-white rounded-lg py-4 px-5">
             <div class="flex justify-between">
@@ -17,5 +16,4 @@
             </div>
         </div>
     </main>
-</div>
 @endsection

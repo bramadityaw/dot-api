@@ -7,6 +7,8 @@
     <title>@yield('title') | dityaw's dashboard</title>
 </head>
 <body>
-    @yield('main')
+    <div class="bg-green-600 h-screen pt-[15dvh]">
+        @yield('main')
+    </div>
 </body>
 </html>
