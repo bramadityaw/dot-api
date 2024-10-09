@@ -17,7 +17,7 @@
                             <input class="block w-4/5 my-2 p-2 border-2 border-gray-200 rounded-md" id="name" name="name" type="text" placeholder="Enter your username" required>
                         </div>
                         @if ($errors->any())
-                        @foreach ($errors->get('email') as $error)
+                        @foreach ($errors->get('name') as $error)
                             <div>
                                 {{ $error }}
                             </div>
@@ -27,7 +27,7 @@
                             <label for="password" class="w-1/5 text-lg">Password</label>
                             <input class="block w-4/5 my-2 p-2 border-2 border-gray-200 rounded-md" id="password" name="password" type="password" placeholder="Enter password" required>
                         </div>
-                        @if ($errors->any())
+                        @if ($errors->any() && (count($errors->get('name')) == 0))
                         @foreach ($errors->get('password') as $error)
                             <div>
                                 {{ $error }}

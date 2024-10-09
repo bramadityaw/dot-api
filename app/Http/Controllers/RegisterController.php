@@ -33,9 +33,9 @@ class RegisterController extends Controller
     public function register(Request $request) : RedirectResponse
     {
         $credentials = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['required', 'string', 'max:255', 'unique:users'],
+            'email' => ['required', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:4'],
         ]);
 
         $user = new User;
@@ -50,6 +50,6 @@ class RegisterController extends Controller
 
         // send email verification
 
-        return redirect()->intended('verifyEmail');
+        return redirect()->intended('login');
     }
 }

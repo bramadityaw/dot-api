@@ -43,7 +43,7 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'No user with email' . $request['email'] . ' found.',
+            'name' => 'User ' . $request['name'] . ' not found.',
             'password' => 'Wrong password. Please try again.',
         ]);
     }
