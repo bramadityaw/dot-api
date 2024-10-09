@@ -25,25 +25,27 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'auth']);
-
-Route::post('/logout', function(Request $request) {
-    Auth::logout();
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
-    return redirect('/');
-});
-
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'register']);
 
-Route::get('/verifyEmail', [VerifyEmailController::class, 'show']);
-Route::get('/verifyEmail/{hash}', [VerifyEmailController::class, 'verify'])->middleware(['signed']);
-Route::post('/verifyEmail/resend', [VerifyEmailController::class, 'resend']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'auth']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard', [
-        'user' => Auth::user(),
-    ]);
-})->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', function(Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    });
+
+    Route::get('/verifyEmail', [VerifyEmailController::class, 'show'])->name('verification.notice');
+    Route::get('/verifyEmail/{id}/{hash}', [VerifyEmailController::class, 'verify'])->middleware(['signed'])->name('verification.verify');
+    Route::post('/verifyEmail/resend', [VerifyEmailController::class, 'resend'])->name('verification.send');
+
+    Route::get('/dashboard', function () {
+        return view('dashboard', [
+            'user' => Auth::user(),
+        ]);
+    })->name('dashboard');
+});
