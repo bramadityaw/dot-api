@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\VerifyEmailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -36,6 +37,10 @@ Route::post('/logout', function(Request $request) {
 
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'register']);
+
+Route::get('/verifyEmail', [VerifyEmailController::class, 'show']);
+Route::get('/verifyEmail/{hash}', [VerifyEmailController::class, 'verify'])->middleware(['signed']);
+Route::post('/verifyEmail/resend', [VerifyEmailController::class, 'resend']);
 
 Route::get('/dashboard', function () {
     return view('dashboard', [
