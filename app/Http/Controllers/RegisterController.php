@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -48,8 +49,8 @@ class RegisterController extends Controller
             ]);
         }
 
-        // send email verification
+        event(new Registered($user));
 
-        return redirect()->intended('login');
+        return redirect()->intended('/verifyEmail');
     }
 }
