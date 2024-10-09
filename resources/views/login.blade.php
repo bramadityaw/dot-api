@@ -14,7 +14,7 @@
                     <div class="flex-col">
                         <div class="flex items-center">
                             <label for="name" class="w-1/5 text-lg">Username</label>
-                            <input class="block w-4/5 my-2 p-2 border-2 border-gray-200 rounded-md" id="name" name="name" type="text" placeholder="Enter your administrator e-mail" required>
+                            <input class="block w-4/5 my-2 p-2 border-2 border-gray-200 rounded-md" id="name" name="name" type="text" placeholder="Enter your username" required>
                         </div>
                         @if ($errors->any())
                         @foreach ($errors->get('email') as $error)
