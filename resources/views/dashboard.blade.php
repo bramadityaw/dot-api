@@ -1,7 +1,8 @@
 @extends('layouts.main')
 @section('title') Home @endsection
 @section('main')
-    <main class="mx-auto w-4/5">
+<div class="h-screen">
+    <main class="mx-auto w-4/5 pt-6">
         <div class="bg-white rounded-lg py-4 px-5">
             <div class="flex justify-between">
                 <h1>Hello {{ $user->name }}!</h1>
@@ -16,4 +17,5 @@
             </div>
         </div>
     </main>
+</div>
 @endsection

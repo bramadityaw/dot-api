@@ -2,6 +2,7 @@
 @section('title') Login @endsection
 @section('main')
 <main>
+    <div class="h-screen pt-[15dvh]">
         <div class="w-4/5 xl:w-2/5 mx-auto">
             <div class="rounded-lg bg-white p-6">
                 <div class="flex justify-center items-center py-12">
@@ -42,5 +43,6 @@
                 </p>
             </div>
         </div>
+    </div>
 </main>
 @endsection
