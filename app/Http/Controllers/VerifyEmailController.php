@@ -9,6 +9,11 @@ use Illuminate\View\View;
 
 class VerifyEmailController extends Controller
 {
+    /**
+    * Returns the email verification notice view
+    *
+    * @return Illuminate\View\View
+    */
     public function show() : View|RedirectResponse
     {
         $email = session('email');
@@ -20,6 +25,15 @@ class VerifyEmailController extends Controller
         ]);
     }
 
+    /**
+    * Verifies a users email after the link in the email
+    * sent to the user is clicked.
+    * At this point, the user is authenticated so redirecting
+    * them to the dashboard is okay.
+    *
+    * @param Illuminate\Foundation\Auth\EmailVerificationRequest
+    * @return Illuminate\Http\RedirectResponse
+    */
     public function verify(EmailVerificationRequest $request) : RedirectResponse
     {
         $request->fulfill();
@@ -27,6 +41,13 @@ class VerifyEmailController extends Controller
         return redirect()->intended('/dashboard');
     }
 
+    /**
+    * Resends the email notification again if
+    * the user missed it.
+    *
+    * @param Illuminate\Http\Request
+    * @return Illuminate\Http\RedirectResponse
+    */
     public function resend(Request $request) : RedirectResponse
     {
         $request->user()->sendEmailVerificationNotification();
