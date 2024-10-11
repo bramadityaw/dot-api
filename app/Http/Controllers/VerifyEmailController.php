@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class VerifyEmailController extends Controller
 {
-    public function show() : View
+    public function show() : View|RedirectResponse
     {
+        $email = session('email');
+        if (!$email) {
+            return redirect()->intended('/login');
+        }
         return view('email.verify', [
-            'user' => Auth::user(),
+            'email' => $email,
         ]);
     }
 
@@ -21,7 +24,7 @@ class VerifyEmailController extends Controller
     {
         $request->fulfill();
 
-        return redirect('/verifyEmail');
+        return redirect()->intended('/dashboard');
     }
 
     public function resend(Request $request) : RedirectResponse

@@ -31,17 +31,17 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'auth']);
 
+Route::get('/verifyEmail', [VerifyEmailController::class, 'show'])->name('verification.notice');
+
 Route::middleware('auth')->group(function () {
+    Route::get('/verifyEmail/{id}/{hash}', [VerifyEmailController::class, 'verify'])->middleware(['signed'])->name('verification.verify');
+    Route::post('/verifyEmail/resend', [VerifyEmailController::class, 'resend'])->name('verification.send');
     Route::post('/logout', function(Request $request) {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
     });
-
-    Route::get('/verifyEmail', [VerifyEmailController::class, 'show'])->name('verification.notice');
-    Route::get('/verifyEmail/{id}/{hash}', [VerifyEmailController::class, 'verify'])->middleware(['signed'])->name('verification.verify');
-    Route::post('/verifyEmail/resend', [VerifyEmailController::class, 'resend'])->name('verification.send');
 
     Route::get('/dashboard', function () {
         return view('dashboard', [

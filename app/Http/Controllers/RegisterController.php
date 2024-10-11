@@ -28,6 +28,8 @@ class RegisterController extends Controller
     * report back to the user which field has an error
     * with corresponding messages.
     *
+    * This also sets the `email` key to show in /verifyEmail
+    *
     * @param Request $request
     * @return RedirectResponse
     */
@@ -42,6 +44,10 @@ class RegisterController extends Controller
         $user = new User;
         $user->name = $credentials['name'];
         $user->email = $credentials['email'];
+
+        // Store email to address in session for /verifyEmail
+        $request->session()->put('email', $user->email);
+
         $user->password = Hash::make($credentials['password']);
         if (!$user->save()) {
             return back()->withErrors([
