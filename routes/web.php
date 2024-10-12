@@ -51,9 +51,19 @@ Route::middleware('auth')->group(function () {
         ]);
     })->name('dashboard');
 
-    Route::get('/dashboard/books', [BookController::class, 'index'])->name('books.index');
-    Route::get('/dashboard/books/create', [BookController::class, 'create'])->name('books.create');
+    Route::get('/dashboard/books', [BookController::class, 'index'])->name('book.index');
+    Route::get('/dashboard/books/search', [BookController::class, 'search'])->name('book.search');
+    Route::get('/dashboard/books/create', [BookController::class, 'create'])->name('book.create');
+    Route::post('/book', [BookController::class, 'store'])->name('book.store');
+    Route::get('/dashboard/books/edit/{book}', [BookController::class, 'edit'])->name('book.create')->name('book.edit');
+    Route::put('/book/{book}', [BookController::class, 'update'])->name('book.update');
+    Route::delete('/book/{book}', [BookController::class, 'destroy'])->name('book.destroy');
 
     Route::get('/dashboard/authors', [AuthorController::class, 'index'])->name('author.index');
+    Route::get('/dashboard/authors/search', [AuthorController::class, 'search'])->name('book.search');
     Route::get('/dashboard/authors/create', [AuthorController::class, 'create'])->name('author.create');
+    Route::post('/author', [AuthorController::class, 'store'])->name('book.store');
+    Route::get('/dashboard/authors/edit/{author}', [AuthorController::class, 'edit'])->name('author.create')->name('author.edit');
+    Route::put('/author/{author}', [AuthorController::class, 'update'])->name('author.update');
+    Route::delete('/author/{author}', [AuthorController::class, 'destroy'])->name('author.destroy');
 });
