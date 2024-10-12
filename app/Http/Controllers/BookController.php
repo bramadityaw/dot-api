@@ -8,29 +8,29 @@ use Illuminate\Http\Request;
 class BookController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a list of books.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
-        return view('authors.index', [
+        return view('books.index', [
             'books' => Book::all(),
         ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a book.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('authors.create');
+        return view('books.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new book entry in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -41,7 +41,7 @@ class BookController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified book.
      *
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
@@ -52,7 +52,7 @@ class BookController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified book.
      *
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
@@ -63,7 +63,7 @@ class BookController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified book in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Book  $book

@@ -9,7 +9,7 @@ use Illuminate\View\View;
 class AuthorController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a list of authors.
      *
      * @return \Illuminate\Http\Response
      */
@@ -21,7 +21,7 @@ class AuthorController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for registering a new author.
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,7 +31,7 @@ class AuthorController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly registered author in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -42,7 +42,7 @@ class AuthorController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified author's information.
      *
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
@@ -53,7 +53,7 @@ class AuthorController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified author's information.
      *
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
@@ -64,7 +64,7 @@ class AuthorController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified author's information in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Author  $author
