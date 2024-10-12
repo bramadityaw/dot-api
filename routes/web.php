@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\VerifyEmailController;
@@ -48,4 +50,10 @@ Route::middleware('auth')->group(function () {
             'user' => Auth::user(),
         ]);
     })->name('dashboard');
+
+    Route::get('/dashboard/books', [BookController::class, 'index'])->name('books.index');
+    Route::get('/dashboard/books/create', [BookController::class, 'create'])->name('books.create');
+
+    Route::get('/dashboard/authors', [AuthorController::class, 'index'])->name('author.index');
+    Route::get('/dashboard/authors/create', [AuthorController::class, 'create'])->name('author.create');
 });

@@ -1,3 +1,6 @@
+@extends('layouts.main')
+@section('title') manage authors @endsection
+@section('main')
 <table>
     <thead>
         <tr>
@@ -20,3 +23,4 @@
     @endif
     </tbody>
 </table>
+@endsection

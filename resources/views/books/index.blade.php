@@ -1,3 +1,6 @@
+@extends('layouts.main')
+@section('title') manage books @endsection
+@section('main')
 <table>
     <thead>
         <tr>
@@ -32,3 +35,4 @@
     @endif
     </tbody>
 </table>
+@endsection
