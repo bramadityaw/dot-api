@@ -5,6 +5,7 @@ Aplikasi manajemen data yang disertai admin panel.
 
 # desain database
 ![Database Design](dot_api-db_diagram.jpg)
+
 Database aplikasi terdiri dari dua table:
 - Books
 - Authors
