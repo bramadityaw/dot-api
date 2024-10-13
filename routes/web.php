@@ -60,9 +60,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/book/{book}', [BookController::class, 'destroy'])->name('book.destroy');
 
     Route::get('/dashboard/authors', [AuthorController::class, 'index'])->name('author.index');
-    Route::get('/dashboard/authors/search', [AuthorController::class, 'search'])->name('book.search');
+    Route::get('/dashboard/authors/search', [AuthorController::class, 'search'])->name('author.search');
     Route::get('/dashboard/authors/create', [AuthorController::class, 'create'])->name('author.create');
-    Route::post('/author', [AuthorController::class, 'store'])->name('book.store');
+    Route::post('/author', [AuthorController::class, 'store'])->name('author.store');
     Route::get('/dashboard/authors/edit/{author}', [AuthorController::class, 'edit'])->name('author.create')->name('author.edit');
     Route::put('/author/{author}', [AuthorController::class, 'update'])->name('author.update');
     Route::delete('/author/{author}', [AuthorController::class, 'destroy'])->name('author.destroy');
