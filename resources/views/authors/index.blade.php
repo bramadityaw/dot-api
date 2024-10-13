@@ -9,6 +9,11 @@
             </div>
             <section class="flex items-center justify-between mb-4">
                 <h1 class="text-xl">Authors</h1>
+                    <form action="{{ route('author.search') }}">
+                        <div class="rounded-md border border-gray-200 px-3 py-2">
+                             <input name="q" type="text" placeholder="Search authors..." value="{{ $q ?? '' }}">
+                        </div>
+                    </form>
                 <a href="{{ route('author.create') }}">
                     <div class="rounded-lg py-1 px-2 text-white bg-blue-500 text-sm text-center">
                         Enter New

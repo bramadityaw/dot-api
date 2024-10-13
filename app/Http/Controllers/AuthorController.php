@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use Fuse\Fuse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use PHPUnit\Exception;
@@ -29,11 +30,30 @@ class AuthorController extends Controller
      */
     public function search(Request $request)
     {
-        // TODO: use a fuzzy search library for handling search results
-        $authors = Author::all();
-        $result = $authors;
-        return view('authors.result', [
+        $q = $request->input('q');
+        if (!$q) {
+            return redirect()->route('author.index');
+        }
+
+        $authors = Author::all()->toArray();
+        $opts = [
+            'keys' => ['name'],
+        ];
+
+        $fuse = new Fuse($authors, $opts);
+
+        $result = collect($fuse->search($q))
+            ->flatten(1)
+            ->filter(function ($_, $k) {
+                return $k % 2 == 0;
+            })
+            ->map(function ($v) {
+                return (object) $v;
+            });
+
+        return view('authors.index', [
             'authors' => $result,
+            'q' => $q,
         ]);
     }
 

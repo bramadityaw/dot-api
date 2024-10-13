@@ -9,6 +9,9 @@
             </div>
             <section class="flex items-center justify-between mb-4">
                 <h1 class="text-xl">Books</h1>
+                <form action="{{ route('book.search') }}">
+                    <input name="q" type="text" placeholder="Search books...">
+                </form>
                 <a href="{{ route('book.create') }}">
                     <div class="rounded-lg py-1 px-2 text-white bg-blue-500 text-sm text-center">
                         Enter New

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Book;
+use Fuse\Fuse;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -28,13 +29,32 @@ class BookController extends Controller
      */
     public function search(Request $request)
     {
-        $books = Book::all();
-        // TODO: use a fuzzy search library for handling search results
-        $result = $books;
+        $q = $request->input('q');
+        if (!$q) {
+            return redirect()->route('book.index');
+        }
+
+        $books = Book::all()->toArray();
+        $opts = [
+            'keys' => ['title'],
+        ];
+
+        $fuse = new Fuse($books, $opts);
+
+        $result = collect($fuse->search($q))
+            ->flatten(1)
+            ->filter(function ($_, $k) {
+                return $k % 2 == 0;
+            })
+            ->map(function ($v) {
+                return (object) $v;
+            });
+
         return view('books.index', [
             'books' => $result,
+            'q' => $q,
         ]);
-    }
+   }
 
     /**
      * Show the form for creating a book.
