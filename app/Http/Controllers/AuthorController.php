@@ -29,6 +29,7 @@ class AuthorController extends Controller
      */
     public function search(Request $request)
     {
+        // TODO: use a fuzzy search library for handling search results
         $authors = Author::all();
         $result = $authors;
         return view('authors.result', [
