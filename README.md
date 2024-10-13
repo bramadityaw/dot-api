@@ -1,9 +1,15 @@
 # dot-api
-Aplikasi manajemen data yang disertai admin panel dan REST API.
+Aplikasi manajemen data yang disertai admin panel.
 
-# Dokumentasi API
-REST API dapat digunakan dengan menyertakan API key dalam setiap request.
-```
-ALL /?key={API_KEY}
-```
-API key dapat dibuat oleh pengguna yang terdaftar dalam database.
+![Admin panel](screenshot.png)
+
+# desain database
+![Database Design](dot_api-db_diagram.jpg)
+Database aplikasi terdiri dari dua table:
+- Books
+- Authors
+Satu author menulis banyak buku (one-to-many relationship)
+
+# dependency
+Framework: Laravel
+Additional deps: loilo/fuse (fuzzy searching)
